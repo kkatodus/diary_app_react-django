@@ -1,0 +1,12 @@
+@import "./constants.css";
+
+.diary-item {
+  background-color: var(--light-blue);
+  height: 200px;
+  width: 200px;
+}
+
+.diary-image {
+  height: 20%;
+  width: 100%;
+}

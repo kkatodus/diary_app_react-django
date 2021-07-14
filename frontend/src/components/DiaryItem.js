@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import { api_base_url } from '../pages/Resource';
 
+import "../styles/item.css"
 
 class DiaryItem extends Component {
     constructor(props){
@@ -13,7 +14,7 @@ class DiaryItem extends Component {
         return ( 
             <div className="diary-item">
                 <img className="diary-image" src={api_base_url+photos[0].image}></img>
-                <div >
+                <div className="diary-descript">
                     <h3>{content}</h3>
                    
                 </div>
