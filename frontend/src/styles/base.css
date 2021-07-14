@@ -8,6 +8,7 @@
   display: flex;
   height: 100vh;
   width: 100%;
+  background-color: var(--brown-pink);
 }
 
 a {
@@ -23,8 +24,13 @@ ul {
   height: 100vh;
   background-color: var(--dark-green);
   width: 200px;
-  transition: 200ms;
-  border-radius: 30px;
+  transition: 350ms;
+  left: -100%;
+}
+
+.nav-container.active {
+  left: 0;
+  transition: 350ms;
 }
 
 .page-container {
@@ -34,6 +40,11 @@ ul {
   background-color: var(--khaki);
   height: 100%;
   width: 100%;
-  border-radius: 30px;
   padding-left: 10px;
+  transition: 350ms;
+}
+
+.full-page {
+  margin-left: 0;
+  transition: 350ms;
 }

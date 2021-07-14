@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { mapState2Props } from '../other/Resource';
 import DiaryItem from '../components/DiaryItem';
 import {api_base_url} from "../pages/Resource"
 
@@ -22,14 +25,15 @@ class DiaryList extends Component {
         .then(data=>this.setState({diaries:data}))        
     }
     render() {
-        const {diaries} = this.state;
+        var {diaries} = this.state;
+        var {nav_active} = this.props;
 
         return ( 
-            <div className="page-container">
-                <h1>Diary List</h1>
+            <div className={nav_active?"page-container":"page-container full-page"}>
+                
                 {diaries.map(item=>{
                     return(
-                        //<DiaryItem key={item.id} content={item.content} created={item.created} photos={item.photos}/>                        
+                                    
                         <DiaryItem key={item.id} {...item}/>
                     )
                 })}
@@ -39,4 +43,4 @@ class DiaryList extends Component {
     }
 }
  
-export default DiaryList;
+export default connect(mapState2Props, {})(DiaryList);

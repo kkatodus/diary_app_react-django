@@ -16,6 +16,12 @@
   justify-content: center;
   font-size: 1.2rem;
   color: var(--khaki);
+  transition: 200ms;
+}
+
+.nav-item:hover {
+  color: white;
+  cursor: pointer;
 }
 
 .nav-icon {
@@ -30,4 +36,31 @@
   bottom: 10px;
   margin-right: 10px;
   margin-left: 10px;
+}
+
+#nav_show_button {
+  left: -100%;
+  position: fixed;
+  height: 70px;
+  width: 70px;
+  font-size: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--khaki);
+  opacity: 0.9;
+  background-color: var(--dark-green);
+  transition: 350ms;
+}
+
+#nav_show_button.active {
+  left: 0;
+  transition: 350ms;
+}
+
+#nav_show_button:hover {
+  opacity: 1;
+  transition: 350ms;
+  cursor: pointer;
 }

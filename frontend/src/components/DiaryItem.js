@@ -11,14 +11,13 @@ class DiaryItem extends Component {
     render() { 
         var {photos, content} = this.props;
         return ( 
-            <div>
+            <div className="diary-detail">
+                <img className="diary-image" src={api_base_url+photos[0].image}></img>
                 <div>
                     <h3>{content}</h3>
-                    <Link to={"diary_detail/"+this.props.id}>
-                        <h3>to diary</h3>
-                    </Link>
+                   
                 </div>
-                <img src={api_base_url+photos[0].image}></img>
+                
             </div>         
          );
     }

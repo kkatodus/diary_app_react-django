@@ -1,13 +1,9 @@
-const navReducer = (state=false, action) => {
+const navReducer = (state=true, action) => {
     switch(action.type){
         case "nav/HIDE":
-            return {
-                active:false
-            }
+            return false
         case "nav/SHOW":
-            return {
-                active:true
-            }
+            return true
         default:
             return state
     }

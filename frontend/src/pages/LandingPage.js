@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { mapState2Props } from '../other/Resource';
 
 class LandingPage extends Component {
-    state = {  }
-    render() { 
+    constructor(props){
+        super(props)
+    }
+    render() {
+        var {nav_active} = this.props; 
         return ( 
-            <div className="page-container">
+        
+            <div className={nav_active?"page-container":"page-container full-page"}>
                 <h1>Landing Page</h1>
 
             </div>
@@ -12,4 +19,4 @@ class LandingPage extends Component {
     }
 }
  
-export default LandingPage;
+export default connect(mapState2Props,{})(LandingPage);
