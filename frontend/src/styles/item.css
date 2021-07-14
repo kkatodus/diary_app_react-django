@@ -1,12 +1,47 @@
 @import "./constants.css";
 
+.item-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-rows: 500px;
+}
+
 .diary-item {
+  margin: auto;
   background-color: var(--light-blue);
-  height: 200px;
-  width: 200px;
+  height: 300px;
+  width: 80%;
+  height: 80%;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 10px 10px var(--purple);
+}
+.image-slide {
+  margin: auto;
+  height: 50%;
+  width: 90%;
+  overflow-y: scroll;
 }
 
 .diary-image {
-  height: 20%;
+  height: 100%;
   width: 100%;
+  object-fit: cover;
+}
+
+.delete-button {
+  position: inherit;
+  border-radius: 50%;
+  margin-top: -20%;
+  margin-left: 90%;
+  height: 2.5rem;
+  width: 2.5rem;
+  background-color: var(--brown-pink);
+  transition: 200ms;
+}
+
+.delete-button:hover {
+  color: white;
+  cursor: pointer;
+  transition: 200ms;
 }

@@ -5,6 +5,9 @@ import { mapState2Props } from '../other/Resource';
 import DiaryItem from '../components/DiaryItem';
 import {api_base_url} from "../pages/Resource"
 
+import "../styles/base.css"
+import "../styles/item.css"
+
 
 class DiaryList extends Component {
     constructor(props){
@@ -27,9 +30,10 @@ class DiaryList extends Component {
     render() {
         var {diaries} = this.state;
         var {nav_active} = this.props;
+        var full_page_class = nav_active?"":" full-page"
 
         return ( 
-            <div className={nav_active?"page-container":"page-container full-page"}>
+            <div className={"page-container item-container"+full_page_class}>
                 
                 {diaries.map(item=>{
                     return(
