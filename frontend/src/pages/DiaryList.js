@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DiaryItem from '../components/DiaryItem';
+import {api_base_url} from "../pages/Resource"
 
-var api_base_url = "http://localhost:8000/"
 
 class DiaryList extends Component {
     constructor(props){
@@ -15,7 +15,7 @@ class DiaryList extends Component {
     }
 
     fetchDiaries(){
-        var fetch_url = api_base_url+"api/diary_list/"
+        var fetch_url = api_base_url+"/api/diary_list/"
 
         fetch(fetch_url)
         .then(data=>data.json())
@@ -25,7 +25,7 @@ class DiaryList extends Component {
         const {diaries} = this.state;
 
         return ( 
-            <div>
+            <div className="page-container">
                 <h1>Diary List</h1>
                 {diaries.map(item=>{
                     return(
