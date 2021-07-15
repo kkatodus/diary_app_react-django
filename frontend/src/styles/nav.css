@@ -52,6 +52,7 @@
   opacity: 0.9;
   background-color: var(--dark-green);
   transition: 350ms;
+  z-index: 5;
 }
 
 #nav_show_button.active {

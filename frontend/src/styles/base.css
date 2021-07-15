@@ -28,6 +28,7 @@ ul {
   width: 200px;
   transition: 350ms;
   left: -100%;
+  z-index: 5;
 }
 
 .nav-container.active {
@@ -51,6 +52,70 @@ ul {
   transition: 350ms;
 }
 
+.right-float-button {
+  position: fixed;
+  right: 10px;
+  top: 50%;
+  height: 4rem;
+  width: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  font-size: 2.5rem;
+  border-radius: 10px;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.background-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bubble {
+  padding: 10px;
+  position: relative;
+  height: 80%;
+  width: 60%;
+}
+
+.bubble-header {
+  display: flex;
+  align-items: center;
+}
+
+.bubble-title {
+  margin-left: 20px;
+}
+
+.bubble-header-icon {
+  font-size: 2rem;
+  margin-left: 10px;
+}
+
+.bubble-close {
+  position: absolute;
+  right: 0;
+  font-size: 2rem;
+  transition: 200ms;
+  color: black;
+}
+
+.bubble-close:hover {
+  cursor: pointer;
+  color: white;
+  transition: 200ms;
+}
 @media screen and (min-device-width: 320px) and (max-device-width: 799px) {
   .page-container {
     margin-left: 0px;

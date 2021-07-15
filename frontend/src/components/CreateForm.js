@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
-import { api_base_url } from './Resource';
+import { api_base_url } from '../pages/Resource';
 
+import {AiOutlineClose } from "react-icons/ai"
+import { BsPencilSquare } from 'react-icons/bs';
+import {FiPenTool} from "react-icons/fi"
+
+import "../styles/base.css"
+import "../styles/creating.css"
 
 
 class CreateForm extends Component {
@@ -84,22 +90,18 @@ class CreateForm extends Component {
 
     render() { 
         var {redirect} = this.state;
-        if(redirect!== null){
-            return(
-                <Redirect to={redirect}/>
-            )
-        }else{
-            return ( 
-                <div>
-                    <div>
-                        <input onChange={this.handleChange} name="content" type="text"/>
-                        <input onChange={this.handleChange} name="image" type="file" multiple={true}/>
-                        <button onClick={this.handleSubmit}>Save</button>
+        return (
+            <div onClick={(e)=>e.target.id==="background"? this.props.onClose():""} id="background" className="background-fill create-background">
+                <div className="bubble create-bubble">
+                    <AiOutlineClose className="bubble-close" onClick={()=>this.props.onClose()}/>
+                    <div className="bubble-header">
+                        <h1 className="bubble-title">Write</h1>
+                        <FiPenTool className="bubble-header-icon"/>
                     </div>
-                
                 </div>
-            );
-        }
+            
+            </div>
+        );
     }
 }
  

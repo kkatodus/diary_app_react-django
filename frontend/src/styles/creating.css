@@ -1,0 +1,21 @@
+@import "./constants.css";
+
+.creating-button {
+  background-color: var(--purple);
+  transition: 200ms;
+}
+
+.creating-button:hover {
+  color: white;
+  transition: 200ms;
+}
+
+.create-background {
+  background-color: rgba(129, 150, 143, 0.6);
+}
+
+.create-bubble {
+  background-color: var(--light-blue);
+  border-radius: 20px;
+  color: white;
+}
