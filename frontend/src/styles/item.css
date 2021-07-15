@@ -7,6 +7,7 @@
 }
 
 .diary-item {
+  position: relative;
   margin: auto;
   background-color: var(--light-blue);
   height: 300px;
@@ -15,29 +16,76 @@
   padding: 10px;
   border-radius: 10px;
   box-shadow: 10px 10px var(--purple);
+  transition: 200ms;
 }
+
+.diary-item:hover {
+  box-shadow: 15px 15px var(--purple);
+  transition: 200ms;
+  padding: 15px;
+  cursor: pointer;
+}
+
 .image-slide {
   margin: auto;
   height: 50%;
   width: 90%;
-  overflow-y: scroll;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide-arrow {
+  position: absolute;
+  top: 50%;
+  font-size: 1.7em;
+  transition: 200ms;
+}
+
+.slide-arrow:hover {
+  color: var(--brown-pink);
+  transition: 200ms;
+}
+
+.left-arrow {
+  left: 0;
+}
+
+.right-arrow {
+  right: 0;
 }
 
 .diary-image {
   height: 100%;
   width: 100%;
   object-fit: cover;
+  visibility: hidden;
+  position: absolute;
+}
+
+.diary-image.active {
+  visibility: visible;
+  position: static;
+}
+
+.photo-counter {
+  position: absolute;
+  top: 0;
+  background-color: var(--light-blue);
+  padding: 8px;
+  border-bottom-right-radius: 20px;
 }
 
 .delete-button {
-  position: inherit;
+  position: absolute;
   border-radius: 50%;
   margin-top: -20%;
   margin-left: 90%;
   height: 2.5rem;
   width: 2.5rem;
+  top: 50px;
   background-color: var(--brown-pink);
   transition: 200ms;
+  z-index: 1;
 }
 
 .delete-button:hover {
