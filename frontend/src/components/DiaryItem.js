@@ -15,7 +15,7 @@ class DiaryItem extends Component {
         return ( 
             <div className="diary-item">
                 <button className="delete-button"><AiFillDelete/></button>
-                <div className="image-slide">                
+                <div className="image-slide">               
                 {photos.map(photo=>{
                     return(
                         <img className="diary-image" src={api_base_url+photo.image}></img>
