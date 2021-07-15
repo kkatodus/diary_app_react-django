@@ -89,7 +89,9 @@ class CreateForm extends Component {
     }
 
     render() { 
-        var {redirect} = this.state;
+        var {redirect,images, content} = this.state;
+        var no_pic_message = images ? "":<h3>NO PICTURES</h3>
+
         return (
             <div onClick={(e)=>e.target.id==="background"? this.props.onClose():""} id="background" className="background-fill create-background">
                 <div className="bubble create-bubble">
@@ -97,6 +99,9 @@ class CreateForm extends Component {
                     <div className="bubble-header">
                         <h1 className="bubble-title">Write</h1>
                         <FiPenTool className="bubble-header-icon"/>
+                    </div>
+                    <div className="bubble-pic-preview">
+                        {no_pic_message}
                     </div>
                 </div>
             

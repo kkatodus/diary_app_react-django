@@ -19,3 +19,13 @@
   border-radius: 20px;
   color: white;
 }
+
+.bubble-pic-preview {
+  position: relative;
+  background-color: var(--khaki);
+  height: 40%;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  padding: 10px;
+}
