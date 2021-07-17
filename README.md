@@ -27,8 +27,7 @@ Now the backend should be ready to accept connections from the react frontend
 
 ## Start the frontend
 
-As port 8000 in the backend docker container is mapped to the port 8000 of your local machine, you do not have to use docker to activate the frontend of this project.
-Simply cd into the frontend directory of this project and run the following commmands.
+I personally prefer to not use docker to start the frontend because it doesn't give me the hot reload react has. So just cd into the frontend and start the frontend normally with the following two commands.
 
 ```bash
 npm install

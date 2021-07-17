@@ -29,3 +29,76 @@
   border-radius: 20px;
   padding: 10px;
 }
+
+.image-input {
+  position: absolute;
+  visibility: hidden;
+}
+
+.images-container {
+  height: 100%;
+  width: 100%;
+  overflow-x: scroll;
+  display: flex;
+}
+
+.photo-add-button {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  right: -10px;
+  height: 50px;
+  width: 50px;
+  border-radius: 5px;
+  font-size: 2rem;
+  z-index: 10;
+}
+
+.diary-content-entry {
+  width: 100%;
+  margin-top: 20px;
+  height: 40%;
+  background-color: var(--khaki);
+  font-size: 1.7rem;
+  border-radius: 20px;
+}
+
+.preview-image {
+  position: relative;
+  height: 80%;
+  width: 150px;
+  margin: 20px;
+  box-shadow: 2px 2px rgba(129, 150, 143, 0.6);
+  border-radius: 10px;
+}
+
+.preview-image:hover {
+  cursor: pointer;
+}
+
+.preview-image img {
+  object-fit: cover;
+  height: 100%;
+  width: 150px;
+  border-radius: 10px;
+}
+
+.image-delete-button {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  color: rgba(129, 150, 143, 0);
+  background-color: transparent;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  border-radius: 10px;
+  font-size: 2rem;
+  transition: 200ms;
+}
+
+.preview-hover {
+  transition: 200ms;
+  background-color: rgba(192, 100, 100, 0.6);
+  color: white;
+}

@@ -75,6 +75,14 @@
   border-bottom-right-radius: 20px;
 }
 
+.diary-descript {
+  overflow-y: scroll;
+  margin: auto;
+  padding-top: 10px;
+  width: 90%;
+  height: minmax(auto, 40%);
+}
+
 .delete-button {
   position: absolute;
   border-radius: 50%;

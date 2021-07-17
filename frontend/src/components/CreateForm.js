@@ -5,22 +5,25 @@ import { api_base_url } from '../pages/Resource';
 import {AiOutlineClose } from "react-icons/ai"
 import { BsPencilSquare } from 'react-icons/bs';
 import {FiPenTool} from "react-icons/fi"
+import {MdPhotoCamera} from "react-icons/md"
+import {AiFillDelete} from "react-icons/ai"
 
 import "../styles/base.css"
 import "../styles/creating.css"
+import ImagePreview from './ImagePreview';
 
 
 class CreateForm extends Component {
     constructor(props){
         super(props)
         this.state={
-            images:null,
+            images:[],
             content:"",
             redirect:null,
         }
-        this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.getCookie = this.getCookie.bind(this);
+        this.handleImageUpload = this.handleImageUpload.bind(this)
         
     }
 
@@ -40,22 +43,27 @@ class CreateForm extends Component {
         return cookieValue;
     }
 
-    handleChange(e){
-        var edited = e.target.name
-        if (edited === "content"){
-            this.setState({
-                ...this.state,
-                content:e.target.value,
-                
-            })
-        }else if (edited === "image"){
-            console.log(e.target.files)
-            this.setState({
-                ...this.state,
-                images:e.target.files
-            })
-        }
-       
+    handleImageUpload(e){
+        var files = Array.from(e.target.files);
+        var new_files = [...this.state.images]
+        files.forEach(file=>new_files.push(file))
+        this.setState({
+            ...this.state,
+            images:new_files
+            }
+        )   
+    }
+
+    handleDelete(key){
+        console.log(key)
+        console.log([...this.state.images])
+        var new_images = [...this.state.images]
+        new_images.splice(key,1)
+        console.log(new_images)
+        this.setState({
+            ...this.state,
+            images:new_images
+        })
     }
 
     handleSubmit(e){
@@ -90,7 +98,17 @@ class CreateForm extends Component {
 
     render() { 
         var {redirect,images, content} = this.state;
-        var no_pic_message = images ? "":<h3>NO PICTURES</h3>
+        var num_images = images.length
+        var no_pic_message = images.length !==0 ? "":<h3>NO PICTURES</h3>
+        var image_previews = <div className="images-container">
+                                {images.reverse().map((image,idx)=>{
+                                    var image_url = URL.createObjectURL(image)
+                                    var image_idx = num_images-(idx+1)
+                                    return (
+                                        <ImagePreview onDelete={()=>this.handleDelete(image_idx)} key={idx} image_url={image_url}/>
+                                    );
+                                })}
+                            </div>
 
         return (
             <div onClick={(e)=>e.target.id==="background"? this.props.onClose():""} id="background" className="background-fill create-background">
@@ -101,8 +119,12 @@ class CreateForm extends Component {
                         <FiPenTool className="bubble-header-icon"/>
                     </div>
                     <div className="bubble-pic-preview">
+                        <button className="button photo-add-button" onClick={()=>{document.getElementById("image_input").click()}}><MdPhotoCamera/></button>
                         {no_pic_message}
+                        {no_pic_message === "" ? image_previews:""}
+                        <input type="file" id="image_input" className="image-input" accept="image/*" multiple={true} onChange={this.handleImageUpload}/>
                     </div>
+                    <textarea className="diary-content-entry" value={content} onChange={(e)=>this.setState({...this.state, content:e.target.value})} placeholder="your story..."></textarea>
                 </div>
             
             </div>
