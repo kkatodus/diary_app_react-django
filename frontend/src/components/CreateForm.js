@@ -17,7 +17,6 @@ class CreateForm extends Component {
         this.state={
             images:[],
             content:"",
-            redirect:null,
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.getCookie = this.getCookie.bind(this);
@@ -86,7 +85,7 @@ class CreateForm extends Component {
     }
 
     render() { 
-        var {redirect,images, content} = this.state;
+        var {images, content} = this.state;
         var num_images = images.length
         var no_pic_message = images.length !==0 ? "":<h3>NO PICTURES</h3>
         var image_previews = <div className="images-container">
@@ -116,7 +115,6 @@ class CreateForm extends Component {
                     </div>
                     <textarea className="diary-content-entry" value={content} onChange={(e)=>this.setState({...this.state, content:e.target.value})} placeholder="your story..."></textarea>
                     {save_button}
-                    
                 </div>
             </div>
         );

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import {Link} from "react-router-dom";
 import { api_base_url } from '../pages/Resource';
 import {AiFillDelete} from "react-icons/ai"
+import {AiFillEdit} from "react-icons/ai"
 import {IoIosArrowDropleftCircle,IoIosArrowDroprightCircle} from "react-icons/io"
 
 import "../styles/item.css"
+import "../styles/base.css"
 
 class DiaryItem extends Component {
     constructor(props){
@@ -15,7 +16,6 @@ class DiaryItem extends Component {
         }
         this.handleSlide = this.handleSlide.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
-        this.handleClick = this.handleClick.bind(this)
     }
     
     handleSlide(direction){
@@ -53,14 +53,8 @@ class DiaryItem extends Component {
         .catch(error=>console.log("error",error))
     }
 
-    handleClick(e){
-        var target_element_id = e.target.className;
-        console.log(target_element_id)
-
-    }
-
     render() { 
-        var {photos, content} = this.props;
+        var {id, photos, content} = this.props;
         var {photo_idx,waiting_delete} = this.state;
         if (waiting_delete){
             return(
@@ -72,7 +66,8 @@ class DiaryItem extends Component {
 
         return ( 
             <div className="diary-item">
-                <button className="delete-button" onClick={this.handleDelete}><AiFillDelete onClick={this.handleDelete}/></button>
+                <button className="card-top-right-button delete-button" onClick={this.handleDelete}><AiFillDelete onClick={this.handleDelete}/></button>
+                <button className="card-top-right-button edit-button" onClick={()=>this.props.onEdit()}><AiFillEdit/></button>
                 <div className="image-slide" id="slide">      
                 <IoIosArrowDropleftCircle className="slide-arrow left-arrow" onClick={()=>this.handleSlide("left")}/>
                 <IoIosArrowDroprightCircle onClick={()=>this.handleSlide("right")} className="slide-arrow right-arrow"/> 

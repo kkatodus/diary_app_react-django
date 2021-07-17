@@ -16,7 +16,6 @@
 
 .create-bubble {
   background-color: var(--light-blue);
-  border-radius: 20px;
   color: white;
 }
 

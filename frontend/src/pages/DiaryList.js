@@ -8,6 +8,7 @@ import { mapState2Props } from '../other/Resource';
 import DiaryItem from '../components/DiaryItem';
 import {api_base_url} from "../pages/Resource";
 import CreateForm from '../components/CreateForm';
+import EditForm from '../components/EditForm';
 
 import "../styles/base.css"
 import "../styles/item.css"
@@ -19,44 +20,63 @@ class DiaryList extends Component {
         super(props)
         this.state = {
             diaries:[],
-            creating:false
+            creating:false,
+            editing:false,
         }
 
         this.fetchDiaries = this.fetchDiaries.bind(this)
         this.handleModalClose = this.handleModalClose.bind(this)
+        this.handleDiaryEdit = this.handleDiaryEdit.bind(this)
     }
     componentDidMount(){
         this.fetchDiaries()
     }
 
-    fetchDiaries(){
+    async fetchDiaries(){
         var fetch_url = api_base_url+"/api/diary_list/"
 
-        fetch(fetch_url)
-        .then(data=>data.json())
-        .then(data=>this.setState({diaries:data}))        
+        var data = await fetch(fetch_url)
+        var data_json = await data.json()
+        this.setState({
+            ...this.state,
+            diaries:data_json
+        })
+          
     }
 
-    handleModalClose(created){
-        this.setState({...this.state, creating:false})
-        if (created){this.fetchDiaries()}
+    handleModalClose(need_update){
+        if (need_update){
+            this.fetchDiaries()
+            this.setState({...this.state, creating:false, editing:false})
+        }else{
+            this.setState({...this.state, creating:false, editing:false})
+        }
         
     }
 
+    handleDiaryEdit(id, images,content){
+        this.setState({
+            ...this.state,
+            editing:{id:id, photos:images, content:content}
+        })
+    }
+
     render() {
-        var {diaries,creating} = this.state;
+        var {diaries,creating,editing} = this.state;
         var {nav_active} = this.props;
         var full_page_class = nav_active?"":" full-page"
-        var create_form = creating ? <CreateForm onClose={(created)=>this.handleModalClose(created)}/>:""
+        var create_form = creating ? <CreateForm onClose={(need_update)=>this.handleModalClose(need_update)}/>:""
+        var edit_form = editing ? <EditForm {...editing} onClose={(need_update)=>this.handleModalClose(need_update)}/>:""
 
         return ( 
             <div className={"page-container item-container"+full_page_class}>
                 {create_form}
+                {edit_form}
                 <button onClick={()=>this.setState({...this.state, creating:true})} className="button right-float-button creating-button"><BsPencilSquare/></button>
                 {diaries.map(item=>{
-                    return(
-                                    
-                        <DiaryItem key={item.id} {...item} onDelete={()=>this.fetchDiaries()}/>
+                    var {id, photos, content} = item;
+                    return(          
+                        <DiaryItem key={item.id} {...item} onEdit={()=>this.handleDiaryEdit(id,photos,content)} onDelete={()=>this.fetchDiaries()}/>
                     )
                 })}
             </div>

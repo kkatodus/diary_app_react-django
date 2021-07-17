@@ -75,27 +75,29 @@
 }
 
 .diary-descript {
-  overflow-y: scroll;
   margin: auto;
   padding-top: 10px;
   width: 90%;
-  height: minmax(auto, 40%);
+  height: 40%;
 }
 
-.delete-button {
-  position: absolute;
-  border-radius: 50%;
-  margin-top: -20%;
-  margin-left: 90%;
-  height: 2.5rem;
-  width: 2.5rem;
-  top: 50px;
+.diary-descript h3 {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+.delete-button,
+.edit-button {
   background-color: var(--brown-pink);
-  transition: 200ms;
-  z-index: 1;
 }
 
-.delete-button:hover {
+.edit-button {
+  margin-left: 75%;
+}
+
+.delete-button:hover,
+.edit-button:hover {
   color: white;
   cursor: pointer;
   transition: 200ms;

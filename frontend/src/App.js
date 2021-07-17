@@ -4,7 +4,6 @@ import {Route, Switch, BrowserRouter as Router} from "react-router-dom";
 
 import Nav from './components/Navbar';
 import DiaryList from './pages/DiaryList';
-import DiaryEditForm from './pages/EditForm';
 import DiaryDetail from './pages/DiaryDetail';
 import LandingPage from './pages/LandingPage';
 
@@ -19,8 +18,6 @@ class App extends Component {
         <Switch>
           <Route path="/" exact component={LandingPage}/>
           <Route path="/diaries" exact component={DiaryList}/>
-          <Route path="/diary_detail/:uuid" exact component={DiaryDetail}/>
-          <Route path="/diary_detail/edit_diary/:uuid" exact component={DiaryEditForm}/>
         </Switch>
       </Router>
      );

@@ -20,7 +20,7 @@ class Photo(models.Model):
 class Diary(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     photos = models.ManyToManyField(Photo, blank=True)
-    content = models.CharField(max_length=100)
+    content = models.TextField()
     created = models.DateTimeField(auto_created=True, default=timezone.now)
 
     @classmethod

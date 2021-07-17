@@ -1,0 +1,9 @@
+@import "./constants.css";
+
+.edit-background {
+  background-color: rgba(207, 185, 165, 0.6);
+}
+
+.edit-bubble {
+  background-color: var(--dark-green);
+}
