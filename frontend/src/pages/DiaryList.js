@@ -23,6 +23,7 @@ class DiaryList extends Component {
         }
 
         this.fetchDiaries = this.fetchDiaries.bind(this)
+        this.handleModalClose = this.handleModalClose.bind(this)
     }
     componentDidMount(){
         this.fetchDiaries()
@@ -35,11 +36,18 @@ class DiaryList extends Component {
         .then(data=>data.json())
         .then(data=>this.setState({diaries:data}))        
     }
+
+    handleModalClose(created){
+        this.setState({...this.state, creating:false})
+        if (created){this.fetchDiaries()}
+        
+    }
+
     render() {
         var {diaries,creating} = this.state;
         var {nav_active} = this.props;
         var full_page_class = nav_active?"":" full-page"
-        var create_form = creating ? <CreateForm onClose={()=>this.setState({...this.state, creating:false})}/>:""
+        var create_form = creating ? <CreateForm onClose={(created)=>this.handleModalClose(created)}/>:""
 
         return ( 
             <div className={"page-container item-container"+full_page_class}>
@@ -48,7 +56,7 @@ class DiaryList extends Component {
                 {diaries.map(item=>{
                     return(
                                     
-                        <DiaryItem key={item.id} {...item}/>
+                        <DiaryItem key={item.id} {...item} onDelete={()=>this.fetchDiaries()}/>
                     )
                 })}
             </div>

@@ -10,9 +10,12 @@ class DiaryItem extends Component {
     constructor(props){
         super(props)
         this.state = {
-            photo_idx:0
+            photo_idx:0,
+            waiting_delete:false
         }
         this.handleSlide = this.handleSlide.bind(this)
+        this.handleDelete = this.handleDelete.bind(this)
+        this.handleClick = this.handleClick.bind(this)
     }
     
     handleSlide(direction){
@@ -29,16 +32,48 @@ class DiaryItem extends Component {
                 this.setState({...this.state, photo_idx:new_idx})
                 break;
         }
+    }
+
+    handleDelete(){
+        this.setState({...this.state, waiting_delete:true})
+        var {id} = this.props;
+        var request_headers = new Headers();
+       
+        
+        var request_options = {
+            method:"DELETE",
+            headers:request_headers,
+            redirect:"follow"
+        };
+        fetch(api_base_url+"/api/diary_detail/"+ id,request_options)
+        .then(response=>response.text())
+        .then(response=>{
+           this.props.onDelete()
+        })
+        .catch(error=>console.log("error",error))
+    }
+
+    handleClick(e){
+        var target_element_id = e.target.className;
+        console.log(target_element_id)
 
     }
 
     render() { 
         var {photos, content} = this.props;
-        var {photo_idx} = this.state;
+        var {photo_idx,waiting_delete} = this.state;
+        if (waiting_delete){
+            return(
+            <div className="diary-item">
+                <h1 className="deleting-placeholder">Deleting...</h1>
+            </div>
+            )
+        }
+
         return ( 
             <div className="diary-item">
-                <button className="delete-button"><AiFillDelete/></button>
-                <div className="image-slide">      
+                <button className="delete-button" onClick={this.handleDelete}><AiFillDelete onClick={this.handleDelete}/></button>
+                <div className="image-slide" id="slide">      
                 <IoIosArrowDropleftCircle className="slide-arrow left-arrow" onClick={()=>this.handleSlide("left")}/>
                 <IoIosArrowDroprightCircle onClick={()=>this.handleSlide("right")} className="slide-arrow right-arrow"/> 
                 {photos.map((photo, idx)=>{

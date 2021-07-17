@@ -7,10 +7,9 @@
 }
 
 .diary-item {
-  position: relative;
   margin: auto;
+  position: relative;
   background-color: var(--light-blue);
-  height: 300px;
   width: 80%;
   height: 80%;
   padding: 10px;
@@ -100,4 +99,9 @@
   color: white;
   cursor: pointer;
   transition: 200ms;
+}
+
+.deleting-placeholder {
+  position: absolute;
+  top: 40%;
 }

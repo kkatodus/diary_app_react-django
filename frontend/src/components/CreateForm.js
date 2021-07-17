@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
 import { api_base_url } from '../pages/Resource';
 
 import {AiOutlineClose } from "react-icons/ai"
-import { BsPencilSquare } from 'react-icons/bs';
 import {FiPenTool} from "react-icons/fi"
 import {MdPhotoCamera} from "react-icons/md"
-import {AiFillDelete} from "react-icons/ai"
+import {AiTwotoneSave} from "react-icons/ai"
 
 import "../styles/base.css"
 import "../styles/creating.css"
@@ -24,7 +22,6 @@ class CreateForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.getCookie = this.getCookie.bind(this);
         this.handleImageUpload = this.handleImageUpload.bind(this)
-        
     }
 
     getCookie(name) {
@@ -55,11 +52,8 @@ class CreateForm extends Component {
     }
 
     handleDelete(key){
-        console.log(key)
-        console.log([...this.state.images])
         var new_images = [...this.state.images]
         new_images.splice(key,1)
-        console.log(new_images)
         this.setState({
             ...this.state,
             images:new_images
@@ -69,7 +63,6 @@ class CreateForm extends Component {
     handleSubmit(e){
         e.preventDefault();
         const  csrftoken = this.getCookie("csrftoken")
-
         var formdata = new FormData()
         Array.from(this.state.images).forEach(file=>{formdata.append("image",file)}
         )
@@ -87,11 +80,7 @@ class CreateForm extends Component {
         fetch(api_base_url+"/api/diary_list/", request_options)
             .then(response=>response.text())
             .then(result=>{
-                console.log(result)
-                this.setState({
-                    ...this.state,
-                    redirect:"",
-                })
+                this.props.onClose(true)
             })
             .catch(error=>console.log("error",error))
     }
@@ -109,11 +98,12 @@ class CreateForm extends Component {
                                     );
                                 })}
                             </div>
+        var save_button = content !== "" ? <button className="diary-save-button button" onClick={this.handleSubmit}><AiTwotoneSave/></button>:""
 
         return (
-            <div onClick={(e)=>e.target.id==="background"? this.props.onClose():""} id="background" className="background-fill create-background">
+            <div onClick={(e)=>e.target.id==="background"? this.props.onClose(false):""} id="background" className="background-fill create-background">
                 <div className="bubble create-bubble">
-                    <AiOutlineClose className="bubble-close" onClick={()=>this.props.onClose()}/>
+                    <AiOutlineClose className="bubble-close" onClick={()=>this.props.onClose(false)}/>
                     <div className="bubble-header">
                         <h1 className="bubble-title">Write</h1>
                         <FiPenTool className="bubble-header-icon"/>
@@ -125,8 +115,9 @@ class CreateForm extends Component {
                         <input type="file" id="image_input" className="image-input" accept="image/*" multiple={true} onChange={this.handleImageUpload}/>
                     </div>
                     <textarea className="diary-content-entry" value={content} onChange={(e)=>this.setState({...this.state, content:e.target.value})} placeholder="your story..."></textarea>
+                    {save_button}
+                    
                 </div>
-            
             </div>
         );
     }
