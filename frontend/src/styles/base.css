@@ -43,13 +43,13 @@ ul {
   background-color: var(--khaki);
   height: 100%;
   width: 100%;
-  padding-left: 10px;
   transition: 350ms;
 }
 
 .full-page {
   margin-left: 0;
   transition: 350ms;
+  padding: 0;
 }
 
 .right-float-button {
@@ -121,7 +121,7 @@ ul {
 .card-top-right-button {
   position: absolute;
   border-radius: 50%;
-  margin-top: -20%;
+  margin-top: -65px;
   margin-left: 90%;
   height: 3rem;
   width: 3rem;

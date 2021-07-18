@@ -1,0 +1,82 @@
+@import "../styles/constants.css";
+
+.landing-container {
+  scroll-snap-type: y mandatory;
+}
+
+section {
+  height: 100vh;
+  width: 100%;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--khaki);
+}
+
+.section-bubble {
+  margin: 10px;
+  position: relative;
+  width: 90%;
+  height: auto;
+  background-color: white;
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-rows: 200px;
+  text-align: center;
+  box-shadow: 5px 5px rgba(90, 84, 84, 0.6);
+  transition: 200ms;
+}
+
+.section-bubble:hover {
+  transform: scale(1.05);
+  transition: transform 200ms;
+}
+
+.section-bubble:nth-child(1) {
+  background-color: var(--dark-green);
+}
+
+.section-bubble:nth-child(2) {
+  background-color: var(--light-blue);
+}
+
+.section-bubble:nth-child(3) {
+  background-color: var(--purple);
+}
+
+.title-section .section-bubble {
+  background-color: var(--brown-pink);
+}
+
+.half-image {
+  object-fit: cover;
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  margin: auto;
+}
+
+.half-icon {
+  height: 70px;
+  width: 70px;
+  margin: auto;
+}
+
+.section-bubble .half-text {
+  margin: auto;
+  width: 90%;
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width: 900px) {
+  .section-bubble {
+    grid-auto-rows: 100px;
+  }
+
+  .half-image {
+    width: 120px;
+    height: 120px;
+  }
+}

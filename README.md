@@ -1,4 +1,10 @@
-# Getting Started
+# About this project
+
+This project is a diary creation application using django as a backend with a psql database and a react frontend. Its main purpose was for me to educate myself on restful api calls and UI development in react.
+
+To allow easier sharing of this project, I have containerized the backend and db of this project using docker.
+
+## Getting Started
 
 ## Start the backend
 
@@ -25,7 +31,7 @@ python manage.py createsuperuser
 
 Now the backend should be ready to accept connections from the react frontend
 
-## Start the frontend
+### Start the frontend
 
 I personally prefer to not use docker to start the frontend because it doesn't give me the hot reload react has. So just cd into the frontend and start the frontend normally with the following two commands.
 
