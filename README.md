@@ -4,7 +4,7 @@ This project is a diary creation application using django as a backend with a ps
 
 To allow easier sharing of this project, I have containerized the backend and db of this project using docker.
 
-You can look at a quick walk through of this project [here](doc:https://youtu.be/fzO0WR2NVC8)
+You can look at a quick walk through of this project [here](https://youtu.be/fzO0WR2NVC8)
 
 ## Getting Started
 
